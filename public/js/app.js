@@ -3473,7 +3473,8 @@ __webpack_require__.r(__webpack_exports__);
       authenticated: auth.check(),
       user: auth.user,
       dragvalue: null,
-      dropvalue: null
+      dropvalue: null,
+      chiefIdArr: [1]
     };
   },
   computed: {},
@@ -3543,21 +3544,21 @@ __webpack_require__.r(__webpack_exports__);
       this.snackbartext = text;
       this.snackbar = true;
     },
+    func: function func(params) {},
     fetchDataNew: function fetchDataNew(id) {
-      this.error = this.items = null;
       var g = 1;
-      var i = 1;
+      var i = 0;
       var res;
 
-      while (i != 6) {
-        axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/users/" + g).then(function (response) {
-          console.log("api/users/" + g);
-          console.log(res);
-          res.forEach(function (item, index, array) {
-            g = item.id;
-          }); // this.items=res; 
+      while (i != 5) {
+        this.chiefIdArr.forEach(function (item, index, array) {
+          axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/users/" + item).then(function (response) {
+            console.log("api/users/" + item);
+            response.data.forEach(function (item, index, array) {});
+            console.log(chiefIdArr);
+          }); // this.items=res;
         });
-        i++;
+        ++i;
       }
     },
     fetchData: function fetchData(search) {

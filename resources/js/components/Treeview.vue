@@ -207,7 +207,8 @@ export default {
       authenticated: auth.check(),
       user: auth.user,
       dragvalue: null,
-      dropvalue: null
+      dropvalue: null,
+      chiefIdArr: [1]
     };
   },
   computed: {},
@@ -296,22 +297,26 @@ export default {
       this.snackbartext = text;
       this.snackbar = true;
     },
+    func(params) {
+      
+    },
     fetchDataNew(id) {
-      this.error = this.items = null;
       var g = 1;
-      var i = 1;
+      var i = 0;
       var res;
-      while (i != 6) {
-        axios.get("api/users/" + g).then(response => {
-          console.log ("api/users/" + g);
-              console.log (res);
-          res.forEach(function(item, index, array) {
-             g = item.id;
+      while (i != 5) {
+        this.chiefIdArr.forEach(function(item, index, array) {
+          axios.get("api/users/" + item).then(response => {
+            console.log("api/users/" + item);
+            response.data.forEach(function(item, index, array) {
+              
+            });
+            console.log(chiefIdArr);
           });
-         // this.items=res; 
+          // this.items=res;
         });
-        i++;
-       
+
+        ++i;
       }
     },
     fetchData(search) {
