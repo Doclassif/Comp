@@ -3042,7 +3042,6 @@ __webpack_require__.r(__webpack_exports__);
 
         console.log(error);
       });
-      ;
     },
     close: function close() {
       this.dialog = false;
@@ -3544,25 +3543,81 @@ __webpack_require__.r(__webpack_exports__);
       this.snackbartext = text;
       this.snackbar = true;
     },
-    func: function func(params) {},
-    fetchDataNew: function fetchDataNew(id) {
-      var g = 1;
-      var i = 0;
-      var res;
-
-      while (i != 5) {
-        this.chiefIdArr.forEach(function (item, index, array) {
-          axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/users/" + item).then(function (response) {
-            console.log("api/users/" + item);
-            response.data.forEach(function (item, index, array) {});
-            console.log(chiefIdArr);
-          }); // this.items=res;
+    func1: function func1(arr, all) {
+      arr.forEach(function (item, index, array) {
+        var data = all.filter(function (user) {
+          return user.сhief_num === item.number_personnel;
         });
-        ++i;
-      }
+        data.forEach(function (item, index, array) {
+          if (arr.find(function (user) {
+            return user.number_personnel === item.number_personnel;
+          })) {} else {
+            arr.push(item);
+          }
+        });
+      });
+      return arr;
+    },
+    fetchDataNew: function fetchDataNew(id) {
+      var _this3 = this;
+
+      this.error = this.items = null;
+      this.loading = true;
+      var users = [];
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/users/").then(function (response) {
+        response.data.forEach(function (item, index, array) {
+          item.text = item.number_personnel + " " + item.last_name + " " + item.first_name + " " + item.middle_name + " " + item.position;
+          item.children = [];
+          item.visible = true;
+          item.open = false;
+
+          if (item.chief == 1) {
+            item.droppable = true;
+          } else {
+            item.droppable = false;
+          }
+
+          item.name = item.text;
+        });
+        users = response.data;
+        var chiefIdArr = new Array();
+        chiefIdArr = users.filter(function (user) {
+          return user.сhief_num === 1;
+        }); // test
+
+        var i = 0;
+
+        while (i < 8) {
+          console.log(i);
+          chiefIdArr = _this3.func1(chiefIdArr, users);
+          ++i;
+        }
+
+        console.log(chiefIdArr);
+        chiefIdArr.reverse(); //распределение
+
+        chiefIdArr.forEach(function (item1, index1, array1) {
+          chiefIdArr.forEach(function (item2, index2, array2) {
+            if (item2.сhief_num == item1.number_personnel) {
+              item1.children.push(item2);
+              delete array2[index2];
+            }
+          });
+        });
+        chiefIdArr.reverse();
+        _this3.items = chiefIdArr.filter(Boolean);
+        _this3.loading = false;
+        return chiefIdArr;
+      }); // axios.get("api/users/" + 1).then(response => {
+      //   chiefIdArr = response.data;
+      //   chiefIdArr=this.func1(chiefIdArr);
+      //   console.log(chiefIdArr);
+      //   var chiefIdArr2=this.func1(chiefIdArr);
+      //   console.log(chiefIdArr2);
+      // });
     },
     fetchData: function fetchData(search) {
-      var _this3 = this;
+      var _this4 = this;
 
       this.error = this.items = null;
       this.loading = true;
@@ -3622,8 +3677,8 @@ __webpack_require__.r(__webpack_exports__);
             }
           });
         });
-        _this3.items = response.data.filter(Boolean);
-        _this3.loading = false;
+        _this4.items = response.data.filter(Boolean);
+        _this4.loading = false;
         return response.data;
       });
     }
@@ -32917,7 +32972,7 @@ var render = function() {
                       _c(
                         "v-toolbar-title",
                         [
-                          _vm._v("\n          Все сотрудники \n          "),
+                          _vm._v("\n          Все сотрудники\n          "),
                           _c(
                             "v-btn",
                             { attrs: { icon: "" }, on: { click: _vm.upd } },

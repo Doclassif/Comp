@@ -297,27 +297,85 @@ export default {
       this.snackbartext = text;
       this.snackbar = true;
     },
-    func(params) {
-      
+    func1(arr, all) {
+      arr.forEach(function(item, index, array) {
+        var data = all.filter(user => user.сhief_num === item.number_personnel);
+        data.forEach(function(item, index, array) {
+          if (
+            arr.find(user => user.number_personnel === item.number_personnel)
+          ) {
+          } else {
+            arr.push(item);
+          }
+        });
+      });
+      return arr;
     },
     fetchDataNew(id) {
-      var g = 1;
-      var i = 0;
-      var res;
-      while (i != 5) {
-        this.chiefIdArr.forEach(function(item, index, array) {
-          axios.get("api/users/" + item).then(response => {
-            console.log("api/users/" + item);
-            response.data.forEach(function(item, index, array) {
-              
-            });
-            console.log(chiefIdArr);
-          });
-          // this.items=res;
+      this.error = this.items = null;
+      this.loading = true;
+      var users = [];
+      axios.get("api/users/").then(response => {
+        response.data.forEach(function(item, index, array) {
+          item.text =
+            item.number_personnel +
+            " " +
+            item.last_name +
+            " " +
+            item.first_name +
+            " " +
+            item.middle_name +
+            " " +
+            item.position;
+          item.children = [];
+          item.visible = true;
+          item.open = false;
+          if (item.chief == 1) {
+            item.droppable = true;
+          } else {
+            item.droppable = false;
+          }
+          item.name = item.text;
         });
+        users = response.data;
+        var chiefIdArr = new Array();
+        chiefIdArr = users.filter(user => user.сhief_num === 1);
+// test
+        var i=0;
+        while (i<8)
+        {
+          console.log(i);
+          chiefIdArr = this.func1(chiefIdArr, users);
+          ++i;
+        }
+      
+        console.log(chiefIdArr);
 
-        ++i;
-      }
+        chiefIdArr.reverse();
+        //распределение
+        chiefIdArr.forEach(function(item1, index1, array1) {
+          chiefIdArr.forEach(function(item2, index2, array2) {
+            if (item2.сhief_num == item1.number_personnel) {
+              item1.children.push(item2);
+              delete array2[index2];
+            }
+          });
+        });
+        chiefIdArr.reverse();
+        this.items = chiefIdArr.filter(Boolean);
+        this.loading = false;
+      return chiefIdArr;
+      });
+      
+      // axios.get("api/users/" + 1).then(response => {
+      //   chiefIdArr = response.data;
+
+      //   chiefIdArr=this.func1(chiefIdArr);
+      //   console.log(chiefIdArr);
+      //   var chiefIdArr2=this.func1(chiefIdArr);
+      //   console.log(chiefIdArr2);
+
+      // });
     },
     fetchData(search) {
       this.error = this.items = null;

@@ -24,7 +24,7 @@
     <v-dialog v-model="progressdialog" max-width="500px">
       <v-progress-linear indeterminate color="white" class="mb-0"></v-progress-linear>
     </v-dialog>
-   
+
     <v-data-table
       :headers="headers"
       :items="items"
@@ -36,7 +36,7 @@
       <template v-slot:top>
         <v-toolbar flat color="white">
           <v-toolbar-title>
-            Все сотрудники 
+            Все сотрудники
             <v-btn icon @click="upd">
               <v-icon>mdi-cached</v-icon>
             </v-btn>
@@ -413,17 +413,17 @@ export default {
     },
     editItem(item) {
       this.editedIndex = this.items.indexOf(item);
-      
+
       this.editedItem = Object.assign({}, item);
       this.dialog = true;
-
     },
 
     deleteItem(item) {
       const index = this.items.indexOf(item);
-      
-      confirm("Вы точно хотите удалить запись?") && this.items.splice(index, 1) &&
-      axios
+
+      confirm("Вы точно хотите удалить запись?") &&
+        this.items.splice(index, 1) &&
+        axios
           .delete("api/users/" + item.id)
           .then(response => {
             this.snackbarInit("Данные удалены", "info");
@@ -431,18 +431,18 @@ export default {
           .catch(error => {
             this.snackbarInit("Ошибка удаления", "error");
             console.log(error);
-          });;
+          });
     },
 
     close() {
       this.dialog = false;
-        this.editedItem = Object.assign({}, this.defaultItem);
-        this.editedIndex = -1;
+      this.editedItem = Object.assign({}, this.defaultItem);
+      this.editedIndex = -1;
     },
 
     save() {
       if (this.editedIndex > -1) {
-         Object.assign(this.items[this.editedIndex], this.editedItem);
+        Object.assign(this.items[this.editedIndex], this.editedItem);
         axios
           .put("api/users/" + this.editedItem.id, this.editedItem)
           .then(response => {
@@ -456,7 +456,7 @@ export default {
         this.items.push(this.editedItem);
         console.log(this.editedItem.number_personnel);
         axios
-        .post("api/users/", this.editedItem)
+          .post("api/users/", this.editedItem)
           .then(response => {
             this.snackbarInit("Данные добавлены", "info");
           })
