@@ -2883,13 +2883,7 @@ __webpack_require__.r(__webpack_exports__);
       jopa: "dsadasdsad",
       file: "",
       dialog: false,
-      headers: [//   {
-      //     text: "",
-      //     align: "start",
-      //     sortable: false,
-      //     value: "name"
-      //  },
-      {
+      headers: [{
         text: "Номер",
         value: "number_personnel"
       }, {
@@ -3091,6 +3085,15 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -34186,6 +34189,44 @@ var render = function() {
                       )
                     ],
                     1
+                  ),
+                  _vm._v(" "),
+                  _c("strong", { staticClass: "white--text" }, [
+                    _vm._v("Doclassif")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: {
+                        icon: "",
+                        onclick:
+                          "return location.href = 'https://vk.com/doclassif'"
+                      }
+                    },
+                    [
+                      _c("v-icon", { staticClass: "white--text" }, [
+                        _vm._v("mdi-vk-circle")
+                      ])
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: {
+                        icon: "",
+                        onclick:
+                          "return location.href = 'https://github.com/Doclassif'"
+                      }
+                    },
+                    [
+                      _c("v-icon", { staticClass: "white--text" }, [
+                        _vm._v("mdi-github-circle")
+                      ])
+                    ],
+                    1
                   )
                 ]
               },
@@ -34233,11 +34274,11 @@ var render = function() {
                     },
                     [
                       _vm._v(
-                        "\n      Вход выполнен: " +
+                        "\n        Вход выполнен: " +
                           _vm._s(_vm.user.last_name) +
                           " " +
                           _vm._s(_vm.user.first_name) +
-                          "\n      "
+                          "\n        "
                       ),
                       _c("v-avatar", { attrs: { right: "" } }, [
                         _vm.authenticated && _vm.user

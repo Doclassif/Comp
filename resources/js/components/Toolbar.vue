@@ -1,5 +1,4 @@
 <template>
-
   <div>
     <v-fab-transition>
       <v-btn
@@ -28,20 +27,22 @@
       <v-col class="text-center" cols="5"></v-col>
 
       <v-spacer></v-spacer>
+
       <v-slide-y-transition>
-      <v-chip
-        class="ma-2 d-none d-lg-flex d-xl-flex"
-        color="#B71C1C"
-        text-color="white"
-        v-if="authenticated && user"
-        @click="drawer = true"
-      >
-        Вход выполнен: {{user.last_name }} {{ user.first_name}}
-        <v-avatar right>
-          <img :src="user.image_url" v-if="authenticated && user" />
-        </v-avatar>
-      </v-chip>
+        <v-chip
+          class="ma-2 d-none d-lg-flex d-xl-flex"
+          color="#B71C1C"
+          text-color="white"
+          v-if="authenticated && user"
+          @click="drawer = true"
+        >
+          Вход выполнен: {{user.last_name }} {{ user.first_name}}
+          <v-avatar right>
+            <img :src="user.image_url" v-if="authenticated && user" />
+          </v-avatar>
+        </v-chip>
       </v-slide-y-transition>
+
       <template v-slot:extension>
         <v-tabs v-model="model" align-with-title>
           <v-tab :href="`#/`" to="/" class="d-none d-md-flex d-lg-flex d-xl-flex">DEMO страница</v-tab>
@@ -59,6 +60,14 @@
             <v-icon>mdi-table</v-icon>
           </v-tab>
         </v-tabs>
+
+        <strong class="white--text">Doclassif</strong>
+        <v-btn icon onclick="return location.href = 'https://vk.com/doclassif'">
+          <v-icon class="white--text">mdi-vk-circle</v-icon>
+        </v-btn>
+        <v-btn icon onclick="return location.href = 'https://github.com/Doclassif'">
+          <v-icon class="white--text">mdi-github-circle</v-icon>
+        </v-btn>
       </template>
     </v-app-bar>
 

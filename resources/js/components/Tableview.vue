@@ -294,13 +294,6 @@ export default {
       file: "",
       dialog: false,
       headers: [
-        //   {
-        //     text: "",
-        //     align: "start",
-        //     sortable: false,
-        //     value: "name"
-        //  },
-
         { text: "Номер", value: "number_personnel" },
         { text: "Фото", value: "avatar", sortable: false },
         { text: "Фамилия", value: "last_name" },
