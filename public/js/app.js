@@ -2983,7 +2983,7 @@ __webpack_require__.r(__webpack_exports__);
         return _this2.progressdialog = false;
       }, 2000);
       this.items = [];
-      this.initialize(); // this.progressdialog=false;
+      this.initialize();
     },
     submitFile: function submitFile() {
       var _this3 = this;
@@ -2996,8 +2996,7 @@ __webpack_require__.r(__webpack_exports__);
           "Content-Type": "multipart/form-data"
         }
       }).then(function (response) {
-        _this3.initialize(); // console.log(response);
-
+        _this3.$set(_this3.editedItem, "image_url", "/storage/images/" + response.data);
       })["catch"](function (error) {
         return console.log(error);
       });
@@ -3020,8 +3019,7 @@ __webpack_require__.r(__webpack_exports__);
         chiefsobj.forEach(function (item, index, array) {
           chiefs.push(item.number_personnel);
         });
-        _this4.chiefs = chiefsobj; //  console.log(chiefs);
-
+        _this4.chiefs = chiefsobj;
         _this4.progressdialog = false;
         return response.data;
       });
@@ -3451,9 +3449,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3548,7 +3543,7 @@ __webpack_require__.r(__webpack_exports__);
       this.snackbartext = text;
       this.snackbar = true;
     },
-    func1: function func1(arr, all) {
+    parsData: function parsData(arr, all) {
       arr.forEach(function (item, index, array) {
         var data = all.filter(function (user) {
           return user.сhief_num === item.number_personnel;
@@ -3596,7 +3591,7 @@ __webpack_require__.r(__webpack_exports__);
         var i = 0;
 
         while (i < 255) {
-          chiefIdArr = _this3.func1(chiefIdArr, users);
+          chiefIdArr = _this3.parsData(chiefIdArr, users);
           ++i;
         }
 
@@ -3626,13 +3621,7 @@ __webpack_require__.r(__webpack_exports__);
         _this3.items = chiefIdArr.filter(Boolean);
         _this3.loading = false;
         return chiefIdArr;
-      }); // axios.get("api/users/" + 1).then(response => {
-      //   chiefIdArr = response.data;
-      //   chiefIdArr=this.func1(chiefIdArr);
-      //   console.log(chiefIdArr);
-      //   var chiefIdArr2=this.func1(chiefIdArr);
-      //   console.log(chiefIdArr2);
-      // });
+      });
     },
     fetchData: function fetchData(search) {
       var _this4 = this;

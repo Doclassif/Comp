@@ -12,16 +12,13 @@ class DBController extends Controller
     public function fileupd(Request $request)
     {
         $number_personnel = $request->item;
-        // $path = $request->file->storeAs('', $number_personnel.'foto.jpg');
-        $oldImg = DB::select('select image_url from users where number_personnel = ?', [$number_personnel]);
+        $oldImg = User::where('number_personnel', $number_personnel)->get();     
         $oldImgStr = substr($oldImg[0]->image_url, 16);
         Storage::delete('public/images/' . $oldImgStr);
         $newImg = Storage::put('public/images/', $request->file);
         $newImgStr = substr($newImg, 15);
-        $return = DB::update('update users set image_url = ?
-        where number_personnel = ?', ['/storage/images/' . $newImgStr, $number_personnel]);
-        // Storage::setVisibility('images/'.$number_personnel.'foto.jpg', 'public');
-        // $visibility = Storage::getVisibility('images/'.$number_personnel.'foto.jpg');
+        User::where('number_personnel', $number_personnel)
+          ->update(['image_url' => '/storage/images/' . $newImgStr]);
         return $newImgStr;
     }
 }

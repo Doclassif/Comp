@@ -60,18 +60,6 @@ class UserController extends Controller
 
         return response()->json($user,  Response::HTTP_OK);
         
-        // return User::where('id', $user->id)
-        // ->update(['number_personnel' => $request->number_personnel,
-        // 'number_personnel' => $request->number_personnel,
-        // 'first_name' => $request->first_name,
-        // 'last_name' => $request->last_name,
-        // 'middle_name' => $request->middle_name,
-        // 'position' => $request->position,
-        // 'date_start_work' => $request->date_start_work,
-        // 'payday' => $request->payday,
-        // 'сhief_num' => $request->сhief_num,
-        // 'email' => $request->email
-        // ]);
     }
 
     /**

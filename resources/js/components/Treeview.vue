@@ -66,9 +66,6 @@
       <v-col cols="2" class="d-none d-md-flex d-lg-flex d-xl-flex"></v-col>
       <v-col cols="auto">
 
-        
-
-
         <!-- <v-text-field
           v-model="search"
           label="Поиск"
@@ -302,7 +299,7 @@ export default {
       this.snackbartext = text;
       this.snackbar = true;
     },
-    func1(arr, all) {
+    parsData(arr, all) {
       arr.forEach(function(item, index, array) {
         var data = all.filter(user => user.сhief_num === item.number_personnel);
         data.forEach(function(item, index, array) {
@@ -350,7 +347,7 @@ export default {
         // test
         var i = 0;
         while (i < 255) {
-          chiefIdArr = this.func1(chiefIdArr, users);
+          chiefIdArr = this.parsData(chiefIdArr, users);
           ++i;
         }
         chiefIdArr.reverse();
@@ -382,16 +379,6 @@ export default {
         this.loading = false;
         return chiefIdArr;
       });
-
-      // axios.get("api/users/" + 1).then(response => {
-      //   chiefIdArr = response.data;
-
-      //   chiefIdArr=this.func1(chiefIdArr);
-      //   console.log(chiefIdArr);
-      //   var chiefIdArr2=this.func1(chiefIdArr);
-      //   console.log(chiefIdArr2);
-
-      // });
     },
     fetchData(search) {
       this.error = this.items = null;

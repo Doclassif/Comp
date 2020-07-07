@@ -372,8 +372,6 @@ export default {
       setTimeout(() => (this.progressdialog = false), 2000);
       this.items = [];
       this.initialize();
-
-      // this.progressdialog=false;
     },
     submitFile() {
       let formData = new FormData();
@@ -386,9 +384,11 @@ export default {
           }
         })
         .then(response => {
-          this.initialize();
-
-          // console.log(response);
+          this.$set(
+            this.editedItem,
+            "image_url",
+            "/storage/images/" + response.data
+          );
         })
         .catch(error => console.log(error));
     },
@@ -406,14 +406,12 @@ export default {
           chiefs.push(item.number_personnel);
         });
         this.chiefs = chiefsobj;
-        //  console.log(chiefs);
         this.progressdialog = false;
         return response.data;
       });
     },
     editItem(item) {
       this.editedIndex = this.items.indexOf(item);
-
       this.editedItem = Object.assign({}, item);
       this.dialog = true;
     },
