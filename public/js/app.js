@@ -3449,6 +3449,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3583,16 +3588,23 @@ __webpack_require__.r(__webpack_exports__);
         var chiefIdArr = new Array();
         chiefIdArr = users.filter(function (user) {
           return user.сhief_num === 1;
+        });
+        var u1 = users.filter(function (user) {
+          return user.id === 1;
         }); // test
 
         var i = 0;
 
-        while (i < 8) {
-          console.log(i);
+        while (i < 255) {
           chiefIdArr = _this3.func1(chiefIdArr, users);
           ++i;
         }
 
+        chiefIdArr.reverse();
+        u1.forEach(function (item, index, array) {
+          chiefIdArr.push(item);
+        });
+        chiefIdArr.reverse();
         console.log(chiefIdArr);
         chiefIdArr.reverse(); //распределение
 
@@ -3602,6 +3614,12 @@ __webpack_require__.r(__webpack_exports__);
               item1.children.push(item2);
               delete array2[index2];
             }
+          });
+        });
+        chiefIdArr.forEach(function (item, index, array) {
+          item.open = true;
+          item.children.forEach(function (item, index, array) {
+            item.open = true;
           });
         });
         chiefIdArr.reverse();
@@ -34393,49 +34411,7 @@ var render = function() {
               _c(
                 "v-col",
                 { attrs: { cols: "6" } },
-                [
-                  _c(
-                    "v-scroll-y-reverse-transition",
-                    [
-                      _c("v-text-field", {
-                        directives: [
-                          {
-                            name: "scroll",
-                            rawName: "v-scroll",
-                            value: _vm.onScroll,
-                            expression: "onScroll"
-                          },
-                          {
-                            name: "show",
-                            rawName: "v-show",
-                            value: _vm.search2,
-                            expression: "search2"
-                          }
-                        ],
-                        attrs: {
-                          "append-icon": "mdi-magnify",
-                          label: "Поиск",
-                          "single-line": "",
-                          solo: "",
-                          dense: ""
-                        },
-                        on: {
-                          change: function($event) {
-                            return _vm.fetchData(_vm.search)
-                          }
-                        },
-                        model: {
-                          value: _vm.search,
-                          callback: function($$v) {
-                            _vm.search = $$v
-                          },
-                          expression: "search"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ],
+                [_c("v-scroll-y-reverse-transition")],
                 1
               ),
               _vm._v(" "),
@@ -34646,30 +34622,6 @@ var render = function() {
             "v-col",
             { attrs: { cols: "auto" } },
             [
-              _c("v-text-field", {
-                staticClass: "ma-1",
-                attrs: {
-                  label: "Поиск",
-                  flat: "",
-                  "single-line": "",
-                  "hide-details": "",
-                  clearable: "",
-                  "clear-icon": "mdi-close-circle-outline"
-                },
-                on: {
-                  change: function($event) {
-                    return _vm.fetchData(_vm.search)
-                  }
-                },
-                model: {
-                  value: _vm.search,
-                  callback: function($$v) {
-                    _vm.search = $$v
-                  },
-                  expression: "search"
-                }
-              }),
-              _vm._v(" "),
               _c("Tree", {
                 attrs: {
                   data: _vm.items,
@@ -34711,8 +34663,7 @@ var render = function() {
                                           },
                                           on: {
                                             click: function($event) {
-                                              store.toggleOpen(data)
-                                              this.fetchDatanew(data.id)
+                                              return store.toggleOpen(data)
                                             }
                                           }
                                         })

@@ -5,7 +5,8 @@
         <v-col cols="3"></v-col>
         <v-col cols="6">
           <v-scroll-y-reverse-transition>
-            <v-text-field
+            <!-- searchtext -->
+            <!-- <v-text-field
               v-scroll="onScroll"
               v-show="search2"
               v-model="search"
@@ -15,7 +16,7 @@
               solo
               dense
               @change="fetchData(search)"
-            ></v-text-field>
+            ></v-text-field> -->
           </v-scroll-y-reverse-transition>
         </v-col>
         <v-col cols="3"></v-col>
@@ -64,7 +65,11 @@
       </v-dialog>
       <v-col cols="2" class="d-none d-md-flex d-lg-flex d-xl-flex"></v-col>
       <v-col cols="auto">
-        <v-text-field
+
+        
+
+
+        <!-- <v-text-field
           v-model="search"
           label="Поиск"
           flat
@@ -74,7 +79,7 @@
           clearable
           clear-icon="mdi-close-circle-outline"
           @change="fetchData(search)"
-        ></v-text-field>
+        ></v-text-field> -->
         <!-- <v-treeview
         v-if="items"
         :items="items"
@@ -115,7 +120,7 @@
               <div @click="opencard(data)">
                 <v-icon
                   v-if="data.children && data.children.length"
-                  @click="store.toggleOpen(data); this.fetchDatanew(data.id)"
+                  @click="store.toggleOpen(data)"
                   v-text="`mdi-${data.open ? 'chevron-down' : 'chevron-up'}`"
                 ></v-icon>
                 <v-icon
@@ -340,15 +345,20 @@ export default {
         users = response.data;
         var chiefIdArr = new Array();
         chiefIdArr = users.filter(user => user.сhief_num === 1);
-// test
-        var i=0;
-        while (i<8)
-        {
-          console.log(i);
+        var u1 = users.filter(user => user.id === 1);
+
+        // test
+        var i = 0;
+        while (i < 255) {
           chiefIdArr = this.func1(chiefIdArr, users);
           ++i;
         }
-      
+        chiefIdArr.reverse();
+        u1.forEach(function(item, index, array) {
+          chiefIdArr.push(item);
+        });
+
+        chiefIdArr.reverse();
         console.log(chiefIdArr);
 
         chiefIdArr.reverse();
@@ -361,12 +371,18 @@ export default {
             }
           });
         });
+        chiefIdArr.forEach(function(item, index, array) {
+          item.open = true;
+          item.children.forEach(function(item, index, array) {
+            item.open = true;
+          });
+        });
         chiefIdArr.reverse();
         this.items = chiefIdArr.filter(Boolean);
         this.loading = false;
-      return chiefIdArr;
+        return chiefIdArr;
       });
-      
+
       // axios.get("api/users/" + 1).then(response => {
       //   chiefIdArr = response.data;
 
