@@ -34086,7 +34086,7 @@ var render = function() {
               },
               on: { click: _vm.toTop }
             },
-            [_c("v-icon", [_vm._v("keyboard_arrow_up")])],
+            [_c("v-icon", [_vm._v("mdi-chevron-up")])],
             1
           )
         ],
