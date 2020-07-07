@@ -22,7 +22,7 @@ Route::apiResource('users','UserController');
 // Route::get('/', 'DBController@view');
 // Route::post('/DBedit', 'DBController@update');
 // Route::post('/DBinsert', 'DBController@insert');
-// Route::post('/fileUpd', 'DBController@fileupd');
+Route::post('/fileUpd', 'DBController@fileupd');
 // Route::post('/draganddrop', 'DBController@draganddrop');
 
 Route::post('/login', 'Auth\AuthController@Login');
