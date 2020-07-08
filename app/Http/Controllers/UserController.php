@@ -17,8 +17,6 @@ class UserController extends Controller
      */
     public function index()
     {
-
-        // $result = DB::table('users')->groupBy('number_personnel')->get();
         return response()->json(User::all());
     }
 
@@ -42,8 +40,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {      
-        $r=response()->json(User::where('сhief_num', $user->id)->get());     
-        return $r;
+        return response()->json(User::where('сhief_num', $user->id)->get());     
     }
     /**
      * Update the specified resource in storage.
