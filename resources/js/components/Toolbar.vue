@@ -50,7 +50,12 @@
             <v-icon>mdi-home</v-icon>
           </v-tab>
 
-          <v-tab :href="`#/tree`" to="/tree" class="d-none d-md-flex d-lg-flex d-xl-flex">Дерево</v-tab>
+          <v-tab :href="`#/Chart`" to="/Chart" class="d-none d-md-flex d-lg-flex d-xl-flex">Дерево</v-tab>
+          <v-tab :href="`#/Chart`" to="/Chart" class="d-flex d-sm-flex d-md-none">
+            <v-icon>mdi-pine-tree</v-icon>
+          </v-tab>
+
+          <v-tab :href="`#/tree`" to="/tree" class="d-none d-md-flex d-lg-flex d-xl-flex">Иерархия</v-tab>
           <v-tab :href="`#/tree`" to="/tree" class="d-flex d-sm-flex d-md-none">
             <v-icon>mdi-sort-variant</v-icon>
           </v-tab>
@@ -60,6 +65,7 @@
             <v-icon>mdi-table</v-icon>
           </v-tab>
         </v-tabs>
+        
 
         <strong class="white--text">Doclassif</strong>
         <v-btn icon onclick="return location.href = 'https://vk.com/doclassif'">

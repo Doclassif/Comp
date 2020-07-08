@@ -6,7 +6,6 @@
       </v-col>
       <v-col class="text-center" cols="6">
         <strong>Doclassif</strong>
-
         <v-btn icon onclick="return location.href = 'https://vk.com/doclassif'">
           <v-icon>mdi-vk-circle</v-icon>
         </v-btn>

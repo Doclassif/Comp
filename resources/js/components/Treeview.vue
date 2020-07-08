@@ -189,7 +189,7 @@
 
 <script>
 import { DraggableTree } from "vue-draggable-nested-tree";
-import axios from "axios";
+
 export default {
   components: { Tree: DraggableTree },
   data() {
@@ -210,7 +210,6 @@ export default {
       user: auth.user,
       dragvalue: null,
       dropvalue: null,
-      chiefIdArr: [1]
     };
   },
   computed: {},
@@ -356,7 +355,6 @@ export default {
         });
 
         chiefIdArr.reverse();
-        console.log(chiefIdArr);
 
         chiefIdArr.reverse();
         //распределение
@@ -385,7 +383,6 @@ export default {
       this.loading = true;
       axios.get("api/users/").then(response => {
         // обработка
-        console.log(response.data);
         response.data.forEach(function(item, index, array) {
           item.text =
             item.number_personnel +

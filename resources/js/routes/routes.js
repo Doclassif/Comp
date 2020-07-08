@@ -5,6 +5,7 @@ import Treeview from '@/js/components/Treeview';
 import Tableview from '@/js/components/Tableview';
 import Login from '@/js/components/Login';
 import Home from '@/js/components/Home';
+import Chart from '@/js/components/Chart';
 
 Vue.use(VueRouter);
 
@@ -20,6 +21,11 @@ const router = new VueRouter ({
             path: '/tree',
             name: 'Treeview',
             component: Treeview
+        },
+        {
+            path: '/Chart',
+            name: 'Chart',
+            component: Chart
         },
         {
             path: '/table',

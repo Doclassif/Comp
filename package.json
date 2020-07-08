@@ -14,10 +14,9 @@
     "vue-draggable-nested-tree": "^3.0.0-beta2",
     "vue-router": "^3.3.4",
     "vue-runtime-helpers": "^1.1.2",
+    "vued3tree": "^5.1.0",
     "vuedraggable": "^2.23.2",
-    "vuetify": "^2.3.3",
-    "vuetify-draggable-treeview": "0.0.3",
-    "vuetify-video-parallax": "^1.0.2"
+    "vuetify": "^2.3.3"
   },
   "devDependencies": {
     "axios": "^0.19",
