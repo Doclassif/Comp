@@ -1,21 +1,17 @@
-УСТАНОВКА
-------------
+## Установка
 npm install
-***
 composer install
-***
-php artisan migrate:install
-*** 
+php artisan storage:link
+php artisan migrate
 php artisan db:seed
-***
 php artisan passport:install
-
-ЗАПУСК
-------------
+## Запуск
 php artisan serve 
 
-ЛОГИН и ПАРОЛЬ
-------------
-ЛОГИН персональный номер от 1 до 750 
-***
-ПАРОЛЬ у всех 123456
+### Админка
+
+Логин персональный номер от 1 до 750 
+Пароль у всех 123456
+
+1
+123456
